@@ -1,8 +1,9 @@
 import React from 'react'
 
-function heartrate() {
+function heartrate(pulse) {
+
   return (
-    <div>heartrate</div>
+    <div>{pulse}</div>
   )
 }
 

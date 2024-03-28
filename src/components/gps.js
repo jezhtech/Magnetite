@@ -1,9 +1,10 @@
 import React from 'react'
 
-function gps() {
+function Gps(gpslat,gpslon) {
+  
   return (
-    <div>gps</div>
+    <div>{gpslat},{gpslon}</div>
   )
 }
 
-export default gps
+export default Gps

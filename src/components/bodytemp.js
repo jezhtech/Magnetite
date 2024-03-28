@@ -1,8 +1,9 @@
 import React from 'react'
 
-function bodytemp() {
+function bodytemp(Temperature) {
+ 
   return (
-    <div>bodytemp</div>
+    <div>{Temperature}</div>
   )
 }
 

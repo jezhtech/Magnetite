@@ -1,8 +1,9 @@
 import React from 'react'
 
-function ammonia() {
+function ammonia(amonia) {
+
   return (
-    <div>ammonia</div>
+    <div>{ammonia}</div>
   )
 }
 

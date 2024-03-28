@@ -1,8 +1,9 @@
 import React from 'react'
 
-function atmoshum() {
+function atmoshum(Humidity) {
+ 
   return (
-    <div>atmoshum</div>
+    <div>{Humidity}</div>
   )
 }
 

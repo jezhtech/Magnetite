@@ -1,8 +1,9 @@
 import React from 'react'
 
-function airquality() {
+function airquality(aq) {
+  
   return (
-    <div>airquality</div>
+    <div>{aq}</div>
   )
 }
 

@@ -1,8 +1,9 @@
 import React from 'react'
 
-function atmostemp() {
+function atmostemp(atmostem) {
+
   return (
-    <div>atmostemp</div>
+    <div>{atmostemp}</div>
   )
 }
 

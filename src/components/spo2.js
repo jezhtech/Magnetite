@@ -1,8 +1,9 @@
 import React from 'react'
 
-function spo2() {
+function spo2(SPo2) {
+
   return (
-    <div>spo2</div>
+    <div>{SPo2}</div>
   )
 }
 

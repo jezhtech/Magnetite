@@ -1,8 +1,9 @@
 import React from 'react'
 
-function methane() {
+function methane(methane) {
+  
   return (
-    <div>methane</div>
+    <div>{methane}</div>
   )
 }
 

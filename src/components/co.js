@@ -1,8 +1,9 @@
 import React from 'react'
 
-function co() {
+function co(co) {
+
   return (
-    <div>co</div>
+    <div>{co}</div>
   )
 }
 

@@ -12,6 +12,9 @@ import heartrate from '@/components/heartrate'
 import methane from '@/components/methane'
 import co2 from '@/components/co2'
 import atmostemp from '@/components/atmostemp'
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar'
+import Head from 'next/head'
 
 function Home() {
 
@@ -124,7 +127,26 @@ setSPo2(SPo2)
   })
   console.log(aq)
   return (
-    <div>
+
+    <html>
+      <Head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossOrigin="anonymous"/>
+      
+    </Head>
+    <body>
+      <div>
+      
+      <div className="container-fluid text-center">
+  <div className="row">
+    <div className="col-2 p-0 bg-body-tertiary border-end" style={{height:"100vh"}}>
+      <Sidebar/>
+    </div>
+    <div className="col-10 p-0" style={{height:"100vh"}}>
+    <Navbar/>
+
+
+
+  <div>
    {aq&&<Airquality aqi={aq}/>}
    {ammonia&&<ammonia ammonia={ammonia}/>}
    {atmostemp&&<atmostemp atmostemp={atmostemp}/>}
@@ -137,6 +159,23 @@ setSPo2(SPo2)
    {SPo2&&<sp02 spo2={SPo2}/>}
 
    </div>
+
+
+
+
+  
+    </div>
+  </div>
+  </div>
+
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    </body>
+    </html>
+
+    
+    
     
   )
 }

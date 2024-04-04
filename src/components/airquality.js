@@ -1,10 +1,10 @@
 import React from 'react'
 
-function airquality(aq) {
+function Airquality(aq) {
   
   return (
     <div>{aq}</div>
   )
 }
 
-export default airquality
+export default Airquality

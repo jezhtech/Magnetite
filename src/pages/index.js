@@ -144,6 +144,28 @@ function Home() {
                 style={{ height: "100vh" }}
               >
                 <Sidebar />
+
+
+
+                <div class="alert alert-danger my-auto rounded-0 font-monospace" role="alert">
+  <h4 class="alert-heading"><span class="bg-danger rounded-0 p-2 text-white">Caution!</span></h4>
+{aq>300?"• The quality of air in this surrounding is 'HAZARDOUS'":null}
+<br/>
+{Humidity>60?"• Atmospheric Humidity is Above the Ideal Level":null}
+{Humidity<40?"• Atmospheric Humidity is Below the Ideal Level":null}
+<br/>
+{atmostemp>40?"• Atmospheric Temperature is Above the Ideal Level":null}
+{atmostemp<30?"• Atmospheric Temperature is Below the Ideal Level":null}
+<br/>
+{Temperature>36.5?"• Body Temperature is Above the Ideal Level":null}
+<br/>
+
+  
+  
+</div>
+
+
+
               </div>
 
               <div className="col-10 p-0" style={{ height: "100vh" }}>
@@ -322,11 +344,11 @@ function Home() {
                                     co/10000 > 5 ? "danger" : "success"
                                   }`}
                                 >
-                                  {co/10000}%
+                                  {co} ppm
                                 </span>
                               </div>
                             <ProgressBar
-                                completed={co/10000 || 0}
+                                completed={co || 0}
                                 customLabel=" "
                                 bgColor={`${co/10000 > 5 ? "#ff0000" : "#198754"}`}
                               />
@@ -340,12 +362,12 @@ function Home() {
                                     methane/10000 > 5 ? "danger" : "success"
                                   }`}
                                 >
-                                  {methane/10000}%
+                                  {methane} ppm
                                 </span>
                               </div>
 
                               <ProgressBar
-                                completed={methane/10000 || 0}
+                                completed={methane|| 0}
                                 customLabel=" "
                                 bgColor={`${
                                   methane/10000 > 5 ? "#ff0000" : "#198754"
@@ -421,12 +443,12 @@ function Home() {
                                     ammonia/10000 > 5 ? "danger" : "success"
                                   }`}
                                 >
-                                  {ammonia/10000}%
+                                  {ammonia} ppm
                                 </span>
                               </div>
 
                               <ProgressBar
-                                completed={ammonia/10000 || 0}
+                                completed={ammonia || 0}
                                 customLabel=" "
                                 bgColor={`${
                                   ammonia/10000 > 5 ? "#ff0000" : "#198754"
@@ -444,12 +466,12 @@ function Home() {
                                     co2/10000 > 5 ? "danger" : "success"
                                   }`}
                                 >
-                                  {co2/10000}%
+                                  {co2} ppm
                                 </span>
                               </div>
 
                               <ProgressBar
-                                completed={co2/10000 || 0}
+                                completed={co2 || 0}
                                 customLabel=" "
                                 bgColor={`${co2/10000 > 5 ? "#ff0000" : "#198754"}`}
                               />

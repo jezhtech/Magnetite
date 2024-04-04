@@ -124,17 +124,7 @@ function Home() {
       setSPo2(SPo2);
     });
   });
-  const centerRenderer = () => {
-    return (
-      <h3
-        style={{
-          color: "#000",
-        }}
-      >
-        {SPo2}%
-      </h3>
-    );
-  };
+
   return (
     <html>
       <Head>
@@ -157,6 +147,7 @@ function Home() {
               </div>
 
               <div className="col-10 p-0" style={{ height: "100vh" }}>
+              <Navbar/>
                 <div class="container-fluid ">
                   <div class="row">
                     <div class="col-6">
@@ -165,18 +156,16 @@ function Home() {
                       )}
                     </div>
                     <div class="col-6 py-3">
-                      <div class="container-fluid ">
-                        <div class="row g-2">
-                          <div class="col-6">
-                            <div class="bg-light rounded-3 border pt-4 pb-3">
-                              <div class="container-fluid text-center">
-                                <div class="row ">
-                                  <span className="font-monospace ">
-                                    Temperature
-                                  </span>
-                                  <div class="col-0"></div>
-                                  <div class="col-12">
-                                    <GaugeComponent
+                      
+                    <div class="container text-center">
+                      <div class="row g-2">
+
+                        <div class="col-6 left">
+                          <div class="p-2">
+
+                            <div class="airquality bg-light border rounded-4">
+                            <span className="font-monospace pt-2">Air Quality</span>
+                            <GaugeComponent
                                       type="semicircle"
                                       arc={{
                                         width: 0.2,
@@ -279,22 +268,104 @@ function Home() {
                                       minValue={0}
                                       maxValue={500}
                                     />
+                            </div>
+
+                            <div class="atmospheric-temperature bg-light border rounded-4 p-3 mt-4">
+                            <span className="font-monospace ">
+                                  Atmospheric Temperature
+                                </span>
+                            <div class="row">
+                                  <div class="col-1">
+                                    <div className="p-4 rounded-circle bg-danger position-relative"></div>
+                                  </div>
+                                  <div
+                                    class="col-11"
+                                    style={{ paddingTop: "0.8rem" }}
+                                  >
+                                    <ProgressBar
+                                      class="position-absolute top-50 start-100 translate-middle"
+                                      completed={atmostemp || 0}
+                                      customLabel={`${atmostemp}°C`}
+                                      bgColor="#dc3545"
+                                    />
                                   </div>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                          <div class="col-6">
-                            <div class=" bg-light rounded-3 p-3 border ">
-                              <div class="container-fluid text-center ">
-                                <div class="row">
-                                  <span className="font-monospace ">
-                                    Humidity
-                                  </span>
 
-                                  <div class="col-0"></div>
-                                  <div class="col-12">
-                                    <GaugeComponent
+                            <div class="body-temperature bg-light border rounded-4 p-3 mt-4">
+                            <span className="font-monospace ">
+                                  Body Temperature
+                                </span>
+                            <div class="row">
+                                  <div class="col-1">
+                                    <div className="p-4 rounded-circle bg-danger position-relative"></div>
+                                  </div>
+                                  <div
+                                    class="col-11"
+                                    style={{ paddingTop: "0.8rem" }}
+                                  >
+                                    <ProgressBar
+                                      class="position-absolute top-50 start-100 translate-middle"
+                                      completed={Temperature || 0}
+                                      customLabel={`${Temperature}°C`}
+                                      bgColor="#dc3545"
+                                    />
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="co bg-light border rounded-4 p-3 mt-4">
+                            <div class="d-flex">
+                                <h5 class="font-monospace ">CO </h5>
+                                <span
+                                  class={`badge px-2 mx-2 rounded-pill text-light h6 bg-${
+                                    co/10000 > 5 ? "danger" : "success"
+                                  }`}
+                                >
+                                  {co/10000}%
+                                </span>
+                              </div>
+                            <ProgressBar
+                                completed={co/10000 || 0}
+                                customLabel=" "
+                                bgColor={`${co/10000 > 5 ? "#ff0000" : "#198754"}`}
+                              />
+                            </div>
+
+                            <div class="methane bg-light border rounded-4 p-3 mt-4">
+                            <div class="d-flex">
+                                <h5 class="font-monospace ">Methane </h5>
+                                <span
+                                  class={`badge px-2 mx-2 rounded-pill text-light h6 bg-${
+                                    methane/10000 > 5 ? "danger" : "success"
+                                  }`}
+                                >
+                                  {methane/10000}%
+                                </span>
+                              </div>
+
+                              <ProgressBar
+                                completed={methane/10000 || 0}
+                                customLabel=" "
+                                bgColor={`${
+                                  methane/10000 > 5 ? "#ff0000" : "#198754"
+                                }`}
+                              />
+                            </div>
+
+                            <div>
+
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-6 right">
+                          <div class="p-2">
+
+                            <div class="humidity bg-light border rounded-4">
+                            <span className="font-monospace pt-2">Humidity</span>
+                            <GaugeComponent
                                       arc={{
                                         subArcs: [
                                           {
@@ -321,130 +392,29 @@ function Home() {
                                       }}
                                       value={Humidity}
                                     />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3  border ">
-                              <div class="container-fluid text-center ">
-                                <span className="font-monospace ">
-                                  Atmospheric Temperature
-                                </span>
-
-                                <div class="row">
-                                  <div class="col-1">
-                                    <div className="p-4 rounded-circle bg-danger position-relative"></div>
-                                  </div>
-                                  <div
-                                    class="col-11"
-                                    style={{ paddingTop: "0.8rem" }}
-                                  >
-                                    <ProgressBar
-                                      class="position-absolute top-50 start-100 translate-middle"
-                                      completed={atmostemp || 0}
-                                      customLabel=" "
-                                      bgColor="#dc3545"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
                             </div>
 
-                            <div class="p-3 bg-light rounded-3 mt-2 border ">
-                              <div class="container-fluid text-center ">
-                                <span className="font-monospace ">
-                                  Body Temperature
-                                </span>
+                            <div class="spo2 bg-light border rounded-4 mt-4 py-1">
+                            <div class="position-relative">
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                              <center>
+                              <span class="font-monospace h5">
+                                SpO<sub>2</sub>
+                              </span>
+                              </center>
+                             
+                              <h1>
+                              {SPo2}%
 
-                                <div class="row">
-                                  <div class="col-1">
-                                    <div className="p-4 rounded-circle bg-danger position-relative"></div>
-                                  </div>
-                                  <div
-                                    class="col-11"
-                                    style={{ paddingTop: "0.8rem" }}
-                                  >
-                                    <ProgressBar
-                                      class="position-absolute top-50 start-100 translate-middle"
-                                      completed={Temperature || 0}
-                                      customLabel=" "
-                                      bgColor="#dc3545"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
+                              </h1>
                             </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 p-3 border ">
-                              <div class="container ">
-                                <div class="row">
-                                  <div class="col-1">
-                                    <h1 class="display-6 fw-bolder">
-                                      {/* {pulse&&<pulse pulse={pulse}/>} */}
-                                    </h1>
-                                  </div>
-                                  <div class="col-11">
-                                    <Graph
-                                      path={"JZHHM0001/Pulse/value"}
-                                      name={"Pulse"}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
+                            <CircularGauge {...arcOptions} />
+
                             </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="container  py-2">
-                        <div class="row g-2">
-
-                          <div class="col-6">
-                            {/* <div class="p-3 bg-light rounded-3 p-3 border ">
-                              <div class="container-fluid text-center ">
-                                <div class="row">
-                                  <h1 class="display-6 fw-bolder font-monospace">
-                                    SpO<sub>2</sub>
-                                    <span class="mx-2">≈</span>
-                                    {SPo2}%
-                                  </h1>
-                                </div>
-                              </div>
-                            </div> */}
-                             <CircularGauge {...arcOptions} centerRender={centerRenderer} />;
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="container ">
-                        <div class="row g-2">
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 border">
-                              <div class="d-flex">
-                                <h5 class="font-monospace ">CO </h5>
-                                <span
-                                  class={`badge px-2 mx-2 rounded-pill text-light h6 bg-${
-                                    co/10000 > 5 ? "danger" : "success"
-                                  }`}
-                                >
-                                  {co/10000}%
-                                </span>
-                              </div>
-
-                              <ProgressBar
-                                completed={co/10000 || 0}
-                                customLabel=" "
-                                bgColor={`${co/10000 > 5 ? "#ff0000" : "#198754"}`}
-                              />
                             </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 border">
-                              <div class="d-flex">
+
+                            <div class="ammonia bg-light border rounded-4 mt-4 p-3">
+                            <div class="d-flex">
                                 <h5 class="font-monospace ">Ammonia</h5>
                                 <span
                                   class={`badge px-2 mx-2 rounded-pill text-light h6 bg-${
@@ -463,32 +433,9 @@ function Home() {
                                 }`}
                               />
                             </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 border">
-                              <div class="d-flex">
-                                <h5 class="font-monospace ">Methane </h5>
-                                <span
-                                  class={`badge px-2 mx-2 rounded-pill text-light h6 bg-${
-                                    methane/10000 > 5 ? "danger" : "success"
-                                  }`}
-                                >
-                                  {methane/10000}%
-                                </span>
-                              </div>
 
-                              <ProgressBar
-                                completed={methane/10000 || 0}
-                                customLabel=" "
-                                bgColor={`${
-                                  methane/10000 > 5 ? "#ff0000" : "#198754"
-                                }`}
-                              />
-                            </div>
-                          </div>
-                          <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 border">
-                              <div class="d-flex">
+                            <div class="co2 bg-light border rounded-4 mt-4 p-3">
+                            <div class="d-flex">
                                 <h5 class="font-monospace ">
                                   CO<sub>2</sub>
                                 </h5>
@@ -507,9 +454,27 @@ function Home() {
                                 bgColor={`${co2/10000 > 5 ? "#ff0000" : "#198754"}`}
                               />
                             </div>
+
                           </div>
                         </div>
+
+                        
+
+
+
                       </div>
+                    </div>
+                    <div class="container-fluid ">
+                        <Graph
+                                      path={"JZHHM0001/Pulse/value"}
+                                      name={"Pulse"}
+                                    />
+                        </div>
+                    
+
+
+
+
                     </div>
 
                     {/* 

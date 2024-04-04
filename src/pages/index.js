@@ -21,6 +21,7 @@ import Graph from "@/components/Graph";
 import Data from "@/components/data";
 import ProgressBar from "@ramonak/react-progress-bar";
 import dynamic from "next/dynamic";
+import { CircularGauge } from "@progress/kendo-react-gauges";
 const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
 });
@@ -38,6 +39,20 @@ function Home() {
   const [pulse, setpulse] = useState("");
   const [methane, setmethane] = useState("");
   const [SPo2, setSPo2] = useState("");
+
+  const colors = [
+    {
+      from:0,
+      to: 1000,
+      color: "#00FF00",
+    },
+   
+  ];
+
+  const arcOptions = {
+    value: SPo2,
+    colors,
+  };
 
   useEffect(() => {
     const aqRef = db.ref("JZHHM0001/AirQuality/value");
@@ -109,7 +124,17 @@ function Home() {
       setSPo2(SPo2);
     });
   });
-
+  const centerRenderer = () => {
+    return (
+      <h3
+        style={{
+          color: "#000",
+        }}
+      >
+        {SPo2}%
+      </h3>
+    );
+  };
   return (
     <html>
       <Head>
@@ -379,7 +404,7 @@ function Home() {
                         <div class="row g-2">
 
                           <div class="col-6">
-                            <div class="p-3 bg-light rounded-3 p-3 border ">
+                            {/* <div class="p-3 bg-light rounded-3 p-3 border ">
                               <div class="container-fluid text-center ">
                                 <div class="row">
                                   <h1 class="display-6 fw-bolder font-monospace">
@@ -389,7 +414,8 @@ function Home() {
                                   </h1>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
+                             <CircularGauge {...arcOptions} centerRender={centerRenderer} />;
                           </div>
                         </div>
                       </div>
